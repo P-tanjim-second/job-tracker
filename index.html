@@ -19,21 +19,21 @@
 </head>
 
 <body class="font-['Geist'] bg-base-200">
-    <header class="pt-16 pb-8 w-11/12 mx-auto">
+    <header class="pt-8 xl:pt-16 pb-8 w-11/12 mx-auto">
         <section class="max-w-screen-lg mx-auto flex flex-col gap-5">
             <h1 class="text-3xl font-bold text-[#002C5C]">Job Application Tracker</h1>
             <div class="flex gap-4">
                 <div class="p-5 flex-grow bg-white rounded-lg shadow">
                     <p class="text-[14px] font-medium">Total</p>
-                    <h4 class="text-2xl font-bold">0</h4>
+                    <h4 id="total-job-number" class="text-2xl font-bold"></h4>
                 </div>
                 <div class="p-5 flex-grow bg-white rounded-lg shadow">
                     <p class="text-[14px] font-medium">Interviews</p>
-                    <h4 class="text-2xl font-bold text-accent">0</h4>
+                    <h4 id="interview-job-number" class="text-2xl font-bold text-accent">0</h4>
                 </div>
                 <div class="p-5 flex-grow bg-white rounded-lg shadow">
                     <p class="text-[14px] font-medium">Rejected</p>
-                    <h4 class="text-2xl font-bold text-secondary">0</h4>
+                    <h4 id="rejected-job-number" class="text-2xl font-bold text-secondary">0</h4>
                 </div>
             </div>
         </section>
@@ -43,26 +43,31 @@
         <section class="flex flex-col gap-6 ">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold text-[#002C5C]">Available Jobs</h2>
-                <p class="text-base text-gray-500"><span id="total-jobs">8</span> jobs</p>
+                <p id="section-job-number" class="text-base text-gray-500"><span id="total-jobs">8</span> jobs</p>
             </div>
             <div class="flex flex-col w-full gap-4">
-                <div class="flex gap-2 w-[20%]">
-                    <button class="btn btn-info flex-grow w-20 border-none">All</button>
-                    <button class="btn flex-grow border-none bg-white">Interviews</button>
-                    <button class="btn flex-grow border-none bg-white">Rejected</button>
+                <div id="selection-button" class="flex gap-2 w-[20%]">
+                    <button id="selection-all"
+                        class="btn btn-info text-white flex-grow min-w-20 border-none">All</button>
+                    <button id="selection-interviews"
+                        class="btn flex-grow border border-transparent bg-white hover:border hover:border-blue-300">Interviews</button>
+                    <button id="selection-rejected"
+                        class="btn flex-grow border border-transparent bg-white hover:border hover:border-blue-300">Rejected</button>
                 </div>
+                <div id="job-cards-container" class="flex flex-col gap-4"></div>
+                <div id="interview-cards-container" class="hidden flex-col gap-4"></div>
+                <div id="rejected-cards-container" class="hidden flex-col gap-4"></div>
 
-                <div class="p-6">
-                    <div>
-                        <h2 class="text-lg font-bold text-[#002C5C]">Mobile First Corp</h2>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                <div class="no-job-card p-6 py-16 bg-white w-full shadow rounded-lg mx-auto text-center hidden">
+                    <div class="mb-5"><img src="jobs.png" class="mx-auto"></div>
+                    <h1 class="text-xl font-bold text-[#002C5C]">No jobs available</h1>
+                    <p class="text-[14px] text-[#323B49]">Check back soon for new job opportunities</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
