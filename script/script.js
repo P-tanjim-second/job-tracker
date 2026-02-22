@@ -18,7 +18,7 @@ const interviewJobs = [];
 const rejectedJobs = [];
 
 function addJob(job) {
-    return `<div class="job-cards p-6 bg-white shadow rounded-lg flex flex-col gap-5">
+    return `<div class="job-cards p-6 bg-white shadow rounded-lg flex flex-col gap-5 transition-all hover:-translate-y-1 hover:shadow-lg">
                     <div class="flex justify-between items-center">
                         <div><h2 class="text-lg font-bold text-[#002C5C] capitalize">${job.companyName}</h2>
                         <p class="text-[15px] text-gray-500 capitalize">${job.skillNeed}</p></div>
@@ -34,7 +34,7 @@ function addJob(job) {
                         </div>
                         <p class="text-[14px] text-[#323B49]">${job.details}</p>
                     </div>
-                    <div class="flex gap-2">
+                    <div class="flex flex-wrap gap-2">
                         <button class="btn btn-outline btn-success border-2">INTERVIEW</button>
                         <button class="btn btn-outline btn-error border-2">REJECTED</button>
                     </div>
