@@ -40,13 +40,13 @@ const totalJobs = [{
     details: "We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects."
 }];
 const interviewJobs = [];
-const rejectedJobs = []; 
+const rejectedJobs = [];
 
 function addJob(job) {
     return `<div class="job-cards p-6 bg-white shadow rounded-lg flex flex-col gap-5">
                     <div class="flex justify-between items-center">
-                        <div><h2 class="text-lg font-bold text-[#002C5C]">${job.companyName}</h2>
-                        <p class="text-[15px] text-gray-500">${job.skillNeed}</p></div>
+                        <div><h2 class="text-lg font-bold text-[#002C5C] capitalize">${job.companyName}</h2>
+                        <p class="text-[15px] text-gray-500 capitalize">${job.skillNeed}</p></div>
                         <div class="delete cursor-pointer btn btn-circle">
                             <i class="fa-regular fa-trash-can"></i>
                         </div>
@@ -69,6 +69,9 @@ function addJob(job) {
 const jobCardsContainer = document.querySelector('#job-cards-container');
 const noJobCard = document.querySelector('.no-job-card');
 const interviewContainer = document.querySelector('#interview-cards-container');
+const sectionAll = document.querySelector("#selection-all");
+const interviewSection = document.querySelector("#selection-interviews");
+const rejectedSection = document.querySelector("#selection-rejected");
 const rejectedContainer = document.querySelector('#rejected-cards-container');
 const sectionJobNumber = document.querySelector('#section-job-number');
 const totalNumber = document.querySelector('#total-job-number');
@@ -81,7 +84,7 @@ totalNumber.innerText = `${totalJobs.length}`;
 totalJobNumber.innerText = `${totalJobs.length}`;
 
 for (let i = 1; i <= totalJobs.length; i++) {
-    jobCardsContainer.insertAdjacentHTML('beforeend', addJob(totalJobs[i-1]));
+    jobCardsContainer.insertAdjacentHTML('beforeend', addJob(totalJobs[i - 1]));
 }
 totalJobs.forEach((job) => {
     job.id = ++objIdCounter;
@@ -90,6 +93,51 @@ document.querySelectorAll('.job-cards').forEach((card) => {
     card.dataset.id = ++cardIdCounter;
 });
 
+document.querySelectorAll(".add-new").forEach((input) => {
+    input.addEventListener("input", () => {
+        let empty = false;
+        document.querySelectorAll(".add-new").forEach((input) => {
+            if (input.value.trim() === "") {
+                empty = true;
+            }
+        });
+
+        if (empty) {
+            document.querySelector(".add-new-btn-div").classList.add("cursor-not-allowed");
+            document.querySelector("#add-new-btn").classList.add("pointer-events-none");
+        }
+        else {
+            document.querySelector(".add-new-btn-div").classList.remove("cursor-not-allowed");
+            document.querySelector("#add-new-btn").classList.remove("pointer-events-none")
+        }
+    })
+});
+
+document.querySelector("#add-new-btn").addEventListener("click", () => {
+    const inputValue = document.querySelectorAll(".add-new");
+    const newJob = {
+        companyName: inputValue[0].value.trim(),
+        skillNeed: inputValue[1].value.trim(),
+        addressAndTime: inputValue[2].value.trim(),
+        details: inputValue[3].value.trim(),
+        id: ++objIdCounter
+    };
+    totalJobs.push(newJob);
+    
+    jobCardsContainer.insertAdjacentHTML("afterbegin", addJob(newJob));
+    jobCardsContainer.firstElementChild.dataset.id = ++cardIdCounter;
+
+    totalNumber.innerText = `${totalJobs.length}`;
+    if (sectionAll.classList.contains("btn-info")) {
+        sectionJobNumber.innerHTML = `<span id="total-jobs">${totalJobs.length}</span> jobs`;
+    }
+    else if (interviewSection.classList.contains("btn-info")) {
+        sectionJobNumber.innerHTML = `${interviewJobs.length} of <span id="total-jobs">${totalJobs.length}</span> jobs`;
+    }
+    else {
+        sectionJobNumber.innerHTML = `${rejectedJobs.length} of <span id="total-jobs">${totalJobs.length}</span> jobs`;
+    }
+});
 
 document.addEventListener("click", (e) => {
     const card = e.target.closest(".job-cards");
@@ -135,6 +183,9 @@ document.addEventListener("click", (e) => {
             else {
                 noJobCard.classList.add("hidden");
             }
+            if(rejectedSection.classList.contains("btn-info")) {
+                sectionJobNumber.innerHTML = `${rejectedJobs.length} of <span id="total-jobs">${totalJobs.length}</span> jobs`;
+            }
         }
     }
 
@@ -178,6 +229,9 @@ document.addEventListener("click", (e) => {
             else {
                 noJobCard.classList.add("hidden");
             }
+            if (interviewSection.classList.contains("btn-info")) {
+                sectionJobNumber.innerHTML = `${interviewJobs.length} of <span id="total-jobs">${totalJobs.length}</span> jobs`;
+            }
         }
     }
 
@@ -197,7 +251,7 @@ document.addEventListener("click", (e) => {
             interviewJobs.pop();
             jobCard.remove();
             const orjObjId = totalJobs.findIndex(object => object.id == cardId);
-            if(orjObjId !== -1){
+            if (orjObjId !== -1) {
                 totalJobs.splice(orjObjId, 1);
             }
             totalNumber.innerText = `${totalJobs.length}`;
@@ -216,7 +270,7 @@ document.addEventListener("click", (e) => {
             interviewJobs.pop();
             jobCard.remove();
             const orjObjId = totalJobs.findIndex(object => object.id == cardId);
-            if(orjObjId !== -1){
+            if (orjObjId !== -1) {
                 totalJobs.splice(orjObjId, 1);
             }
             totalNumber.innerText = `${totalJobs.length}`;
@@ -228,7 +282,7 @@ document.addEventListener("click", (e) => {
             rejectedJobs.pop();
             jobCard.remove();
             const orjObjId = totalJobs.findIndex(object => object.id == cardId);
-            if(orjObjId !== -1){
+            if (orjObjId !== -1) {
                 totalJobs.splice(orjObjId, 1);
             }
             totalNumber.innerText = `${totalJobs.length}`;
@@ -247,7 +301,7 @@ document.addEventListener("click", (e) => {
             rejectedJobs.pop();
             jobCard.remove();
             const orjObjId = totalJobs.findIndex(object => object.id == cardId);
-            if(orjObjId !== -1){
+            if (orjObjId !== -1) {
                 totalJobs.splice(orjObjId, 1);
             }
             totalNumber.innerText = `${totalJobs.length}`;
@@ -257,7 +311,7 @@ document.addEventListener("click", (e) => {
         else {
             jobCard.remove();
             const orjObjId = totalJobs.findIndex(object => object.id == cardId);
-            if(orjObjId !== -1){
+            if (orjObjId !== -1) {
                 totalJobs.splice(orjObjId, 1);
             }
             totalNumber.innerText = `${totalJobs.length}`;

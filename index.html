@@ -31,46 +31,50 @@
                     <div onclick="my_modal_5.showModal()" class="btn btn-circle">
                         <i class="fa-solid fa-plus"></i>
                         <!-- Open the modal using ID.showModal() method -->
-                        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-                            <div class="modal-box">
+                        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle cursor-default">
+                            <div class="modal-box cursor-default">
                                 <h3 class="text-xl font-bold mb-3">Add New Job</h3>
 
                                 <div class="add-new-inputs flex flex-col gap-3 justify-center items-center">
                                     <label class="input validator">
                                         <i class="fa-regular fa-building"></i>
-                                        <input id="company-name" class="add-new" type="text" required placeholder="Company Name"
-                                            pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30"
-                                            title="Only letters, numbers or dash" aria-required="true"/>
+                                        <input id="company-name" class="add-new" type="text" required
+                                            placeholder="Company Name" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3"
+                                            maxlength="30" title="Only letters, numbers or dash" aria-required="true" />
                                     </label>
 
                                     <label class="input validator">
                                         <i class="fa-solid fa-terminal"></i>
-                                        <input id="skill" class="add-new" type="text" required placeholder="Required Skill" minlength="3"
-                                            maxlength="30" title="Only letters, numbers or dash" aria-required="true"/>
+                                        <input id="skill" class="add-new" type="text" required
+                                            placeholder="Required Skill" minlength="3" maxlength="30"
+                                            title="Only letters, numbers or dash" aria-required="true" />
                                     </label>
 
                                     <label class="input validator">
                                         <i class="fa-solid fa-location-dot"></i>
-                                        <input id="addrres-time" class="add-new" type="text" required placeholder="Address Time and Salary" minlength="3"
-                                            maxlength="30" title="Only letters, numbers or dash"
-                                            value="Los Angeles, CA • Part-time • $80,000 - $120,000" aria-required="true"/>
+                                        <input id="addrres-time" class="add-new" type="text" required
+                                            placeholder="Address Time and Salary" title="Only letters, numbers or dash"
+                                            value="Los Angeles, CA • Part-time • $80,000 - $120,000"
+                                            aria-required="true" />
                                     </label>
 
                                     <label class="input validator">
                                         <i class="fa-solid fa-circle-info"></i>
-                                        <input id="details" class="add-new" type="text" required placeholder="Description of Company" minlength="3"
-                                            maxlength="30" title="Only letters, numbers or dash" aria-required="true"/>
+                                        <input id="details" class="add-new" type="text" required
+                                            placeholder="Description of Company" title="Only letters, numbers or dash"
+                                            aria-required="true" />
                                     </label>
 
                                 </div>
 
                                 <div class="modal-action">
-                                    <form method="dialog">
+                                    <form method="dialog" class="flex gap-3">
                                         <!-- if there is a button in form, it will close the modal -->
                                         <button class="btn">Close</button>
+                                        <div class="add-new-btn-div w-fit h-fit cursor-not-allowed">
+                                            <button id="add-new-btn" class="btn btn-soft btn-info pointer-events-none">Add New</button>
+                                        </div>
                                     </form>
-
-                                    <button class="btn btn-soft btn-info">Add New</button>
                                 </div>
                             </div>
                         </dialog>
